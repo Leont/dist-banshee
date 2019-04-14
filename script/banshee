@@ -1,0 +1,13 @@
+#!perl
+
+use strict;
+use warnings;
+
+use File::Spec::Functions 'catfile';
+
+die "No command given" if not @ARGV;
+my $command = shift;
+my $filename = catfile('.banshee', $command . '.command');
+
+die "Unknown command $command" if not -e $filename;
+exit (do "./$filename" // die $@);

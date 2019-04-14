@@ -1,0 +1,14 @@
+#! perl
+use strict;
+use warnings;
+use Dist::Banshee::Meta qw/metamerge_file prereqs_file meta_merge version_from_module/;
+
+my @meta_parts;
+
+my $meta_base = metamerge_file('metamerge.yml');
+push @meta_parts, $meta_base;
+
+push @meta_parts, version_from_module($meta_base->{name} =~ s/-/::/gr);
+push @meta_parts, prereqs_file($_) for grep { -e $_ } qw/prereqs.yml prereqs.json/;
+
+return meta_merge(@meta_parts);

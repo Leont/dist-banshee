@@ -21,6 +21,10 @@ runtime:
     perl: '5.010'
     version: '0'
 
+test:
+  requires:
+    Test::More: '0.89'
+
 configure:
   requires:
     ExtUtils::MakeMaker: '0'

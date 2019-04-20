@@ -37,6 +37,9 @@ my %WriteMakefileArgs = (
     "Text::Template" => 0,
     "version" => 0
   },
+  "TEST_REQUIRES" => {
+    "Test::More" => "0.89"
+  },
   "VERSION" => "0.001",
   "test" => {
     "TESTS" => "t/*.t"
@@ -62,6 +65,7 @@ my %FallbackPrereqs = (
   "Module::Load" => 0,
   "Module::Metadata" => 0,
   "Parse::CPAN::Meta" => 0,
+  "Test::More" => "0.89",
   "Text::Template" => 0,
   "version" => 0
 );

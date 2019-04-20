@@ -5,3 +5,5 @@
 *.tdy
 *.tar.gz
 Dist-Banshee-*
+META.*
+MYMETA.*

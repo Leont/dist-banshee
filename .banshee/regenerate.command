@@ -3,7 +3,6 @@ use strict;
 use warnings;
 
 use Dist::Banshee::Core qw/source write_file/;
-use Dist::Banshee::Meta 'license_from_meta';
 
 use Dist::Banshee::MakeMaker::Simple 'makemaker_simple';
 

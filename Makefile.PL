@@ -34,13 +34,12 @@ my %WriteMakefileArgs = (
     "Module::Load" => 0,
     "Module::Metadata" => 0,
     "Parse::CPAN::Meta" => 0,
-    "Software::LicenseUtils" => 0,
     "Text::Template" => 0,
     "version" => 0
   },
   "VERSION" => "0.001",
   "test" => {
-    "TESTS" => ""
+    "TESTS" => "t/*.t"
   }
 );
 
@@ -63,7 +62,6 @@ my %FallbackPrereqs = (
   "Module::Load" => 0,
   "Module::Metadata" => 0,
   "Parse::CPAN::Meta" => 0,
-  "Software::LicenseUtils" => 0,
   "Text::Template" => 0,
   "version" => 0
 );

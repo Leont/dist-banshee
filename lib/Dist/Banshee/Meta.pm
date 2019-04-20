@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge license_from_meta version_from_module/;
+our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module/;
 
 use File::Spec::Functions 'catfile';
 

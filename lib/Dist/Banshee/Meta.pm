@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module/;
+our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module provides_from/;
 
 use File::Spec::Functions 'catfile';
 
@@ -45,6 +45,14 @@ sub version_from_module {
 	return {
 		version => $version,
 		release_status => $release_status,
+	};
+}
+
+sub provides_from {
+	my ($dir) = @_;
+	require Module::Metadata;
+	return {
+		provides => Module::Metadata->provides(version => 2, dir => $dir),
 	};
 }
 

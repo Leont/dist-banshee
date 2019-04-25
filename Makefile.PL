@@ -13,6 +13,9 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => 0
   },
   "DISTNAME" => "Dist-Banshee",
+  "EXE_FILES" => [
+    "script/banshee"
+  ],
   "LICENSE" => "perl_5",
   "MIN_PERL_VERSION" => "5.010",
   "NAME" => "Dist::Banshee",

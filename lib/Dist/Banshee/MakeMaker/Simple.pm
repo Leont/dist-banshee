@@ -6,6 +6,7 @@ use warnings;
 use Exporter 5.57 'import';
 our @EXPORT_OK = qw/makemaker_simple/;
 
+use Carp 'croak';
 use version;
 
 sub normalize_eumm_versions {
@@ -41,9 +42,8 @@ sub makemaker_simple {
  
 	my $name = $meta->name =~ s/-/::/gr;
  
-#	my @exe_files = map { $_->name } @{ $self->zilla->find_files(':ExecFiles') };
- 
-#	$self->log_fatal("can't install files with whitespace in their names") if grep { /\s/ } @exe_files;
+	my @exe_files = grep { m{\A ( bin | script ) / }x } keys %{ $files };
+	croak "Can't install files with whitespace in their names" if grep { /\s/ } @exe_files;
  
 	my %test_dirs;
 	for my $file (keys %{ $files }) {
@@ -96,7 +96,7 @@ sub makemaker_simple {
 		ABSTRACT => $meta->abstract,
 		VERSION  => $meta->version,
 		LICENSE  => ($meta->license)[0],
-#		@exe_files ? ( EXE_FILES => [ sort @exe_files ] ) : (),
+		@exe_files ? ( EXE_FILES => [ sort @exe_files ] ) : (),
  
 		CONFIGURE_REQUIRES => $require_prereqs{configure},
 		keys %{ $require_prereqs{build} } ? ( BUILD_REQUIRES => $require_prereqs{build} ) : (),

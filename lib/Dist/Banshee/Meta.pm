@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module provides_from/;
+our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module provides_from main_module/;
 
 use File::Spec::Functions 'catfile';
 
@@ -56,4 +56,9 @@ sub provides_from {
 	};
 }
 
+sub main_module {
+	my ($meta_base) = @_;
+	(my $module = $meta_base->{name}) =~ s/-/::/g;
+	return $module;
+}
 1;

@@ -10,7 +10,7 @@ use Git::Wrapper;
 use File::Slurper 'read_binary';
 
 sub gather_files {
-	my ($self, $filter) = @_;
+	my ($filter) = @_;
  
 	# Prepare to gather files
 	my $git = Git::Wrapper->new('.');

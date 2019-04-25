@@ -13,7 +13,7 @@ runtime:
     Getopt::Long: '0'
     Git::Wrapper: '0'
     JSON::PP: '0'
-    List::Util: '1.29'
+    List::Util: '0'
     Module::Load: '0'
     Module::Metadata: '0'
     Parse::CPAN::Meta: '0'

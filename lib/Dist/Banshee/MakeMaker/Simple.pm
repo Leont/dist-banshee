@@ -6,7 +6,6 @@ use warnings;
 use Exporter 5.57 'import';
 our @EXPORT_OK = qw/makemaker_simple/;
 
-use List::Util 1.29 qw/pairs pairgrep/;
 use version;
 
 sub normalize_eumm_versions {
@@ -82,12 +81,11 @@ sub makemaker_simple {
 	# https://github.com/Perl-Toolchain-Gang/ExtUtils-MakeMaker/issues/215
 	my $eumm_version = $meta->effective_prereqs->requirements_for('configure', 'requires')->requirements_for_module('ExtUtils::MakeMaker') || 0;
 	foreach my $phase (qw(configure build test runtime)) {
-		if (my @version_ranges = pairgrep { defined($b) && !version::is_lax($b) } %{ $require_prereqs{$phase} }
-				and ($eumm_version || 0) < '7.1101') {
-			die sprintf
-				'found version range in %s prerequisites, which ExtUtils::MakeMaker cannot parse (must specify eumm_version of at least 7.1101): %s %s',
-				$phase, $_->[0], $_->[1]
-			foreach pairs @version_ranges;
+		for my $module (keys %{ $require_prereqs{$phase} }) {
+			my $version = $require_prereqs{$phase}{$module};
+			if (defined $version && !version::is_lax($version)) {
+				die "found version range in $phase prerequisites, which ExtUtils::MakeMaker cannot parse (must specify eumm_version of at least 7.1101): $module $version";
+			}
 		}
 	}
  

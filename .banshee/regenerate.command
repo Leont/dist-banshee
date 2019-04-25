@@ -3,8 +3,14 @@ use strict;
 use warnings;
 
 use Dist::Banshee::Core qw/source write_file/;
-
 use Dist::Banshee::MakeMaker::Simple 'makemaker_simple';
+use Getopt::Long;
+
+GetOptions(bump => \my $bump);
+
+if ($bump) {
+	system 'perl-reversion', '-bump';
+}
 
 my $meta = source('gather-metadata');
 

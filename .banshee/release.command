@@ -15,7 +15,7 @@ in_tempdir {
 
 	system $^X, 'Makefile.PL' and die "Failed perl Makefile.PL";
 	system 'make' and die "Failed make";
-	system 'make', 'test' or die "Failed make test" if -e 't';
+	system 'make', 'test' and die "Failed make test" if -e 't';
 };
 
 my $meta = source('gather-metadata');

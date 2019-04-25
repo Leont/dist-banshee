@@ -42,7 +42,7 @@ sub write_tarball {
 	require Archive::Tar;
 	my $arch = Archive::Tar->new;
 	for my $filename (keys %{ $files }) {
-		$arch->add_data($filename, $files->($filename), { mode => oct '0644'} );
+		$arch->add_data($filename, $files->{$filename}, { mode => oct '0644'} );
 	}
 	my $name = $meta->name . '-' . $meta->version . ( $trial ? '-TRIAL' : '');
 	my $file =  "$name.tar.gz";

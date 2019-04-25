@@ -6,6 +6,7 @@ use warnings;
 use Exporter 5.57 'import';
 our @EXPORT_OK = qw/source write_file write_files in_tempdir write_tarball/;
 
+use Carp 'croak';
 use File::Spec::Functions 'catfile';
 use File::Basename 'dirname';
 use File::Path 'mkpath';
@@ -16,7 +17,7 @@ use File::chdir;
 sub source {
 	my ($filename, @arguments) = @_;
 	my $path = catfile('.banshee', "$filename.source");
-	return do "./$path" // die $@;
+	return do "./$path" // croak $@;
 }
 
 sub write_file {

@@ -84,7 +84,7 @@ sub makemaker_simple {
 		for my $module (keys %{ $require_prereqs{$phase} }) {
 			my $version = $require_prereqs{$phase}{$module};
 			if (defined $version && !version::is_lax($version)) {
-				die "found version range in $phase prerequisites, which ExtUtils::MakeMaker cannot parse (must specify eumm_version of at least 7.1101): $module $version";
+				croak "found version range in $phase prerequisites, which ExtUtils::MakeMaker cannot parse (must specify eumm_version of at least 7.1101): $module $version";
 			}
 		}
 	}

@@ -4,19 +4,13 @@ use strict;
 use warnings;
 
 use CPAN::Upload::Tiny 0.009;
-use Dist::Banshee::Core qw/source write_files in_tempdir write_tarball y_n/;
+use Dist::Banshee::Core qw/source dist_test write_tarball y_n/;
 
 my $files = source('gather-files');
 
 # checkchanges
 
-in_tempdir {
-	write_files($files);
-
-	system $^X, 'Makefile.PL' and die "Failed perl Makefile.PL";
-	system 'make' and die "Failed make";
-	system 'make', 'test' and die "Failed make test" if -e 't';
-};
+dist_test($files);
 
 if (y_n('Do you want to continue the release process?', 'n')) {
 	my $meta = source('gather-metadata');

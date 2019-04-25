@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/source write_file write_files in_tempdir write_tarball prompt y_n/;
+our @EXPORT_OK = qw/source write_file write_files in_tempdir dist_test write_tarball prompt y_n/;
 
 use Carp 'croak';
 use File::Spec::Functions 'catfile';
@@ -55,6 +55,17 @@ sub in_tempdir(&) {
 	my ($code) = @_;
 	local $CWD = tempdir(CLEANUP => 1);
 	$code->();
+}
+
+sub dist_test {
+	my ($files) = @_;
+	in_tempdir {
+		write_files($files);
+
+		system $^X, 'Makefile.PL' and die "Failed perl Makefile.PL";
+		system 'make' and die "Failed make";
+		system 'make', 'test' and die "Failed make test";
+	};
 }
 
 sub prompt {

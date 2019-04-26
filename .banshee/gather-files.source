@@ -7,4 +7,9 @@ use ExtUtils::Manifest 'maniskip';
 my $maniskip = maniskip;
 my $files = gather_files(sub { !$maniskip->($_) });
 
+my $meta = source('gather-metadata');
+
+$files->{'META.json'} = $meta->as_string;
+$files->{'META.yml'}  = $meta->as_string({ version => 1.4 });
+
 return $files;

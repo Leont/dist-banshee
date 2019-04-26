@@ -14,7 +14,7 @@ my %WriteMakefileArgs = (
   },
   "DISTNAME" => "Dist-Banshee",
   "EXE_FILES" => [
-    "script/banshee"
+    "script/dban"
   ],
   "LICENSE" => "perl_5",
   "MIN_PERL_VERSION" => "5.010",

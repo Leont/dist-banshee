@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/source write_file write_files in_tempdir dist_test write_tarball prompt y_n/;
+our @EXPORT_OK = qw/source write_file write_files in_tempdir dist_test write_tarball prompt y_n bump_version/;
 
 use Carp 'croak';
 use File::Spec::Functions 'catfile';
@@ -107,4 +107,18 @@ sub y_n {
 	}
 }
 
+sub bump_version {
+	my (@files) = @_;
+
+	my $pid = open my $handle, '-|', 'perl-reversion', '-bump', @files;
+	my @lines = <$handle>;
+	waitpid $pid, 0 or die 'Couldn\'t bump version ' . join "\n", @lines;
+
+	my @updated;
+	for my $line (@lines) {
+		push @updated, $1 if $line =~ /^Saving (.*?)$/ms;
+	}
+
+	return @updated;
+}
 1;

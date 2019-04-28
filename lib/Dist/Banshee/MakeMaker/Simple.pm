@@ -40,7 +40,7 @@ sub dump_as {
 sub makemaker_simple {
 	my ($meta, $files) = @_;
  
-	my $name = $meta->name =~ s/-/::/gr;
+	(my $name = $meta->name) =~ s/-/::/g;
  
 	my @exe_files = grep { m{\A ( bin | script ) / }x } keys %{ $files };
 	croak "Can't install files with whitespace in their names" if grep { /\s/ } @exe_files;
@@ -48,7 +48,7 @@ sub makemaker_simple {
 	my %test_dirs;
 	for my $file (keys %{ $files }) {
 		next unless $file =~ m{\At/.+\.t\z};
-		my $dir = $file =~ s{/[^/]+\.t\z}{/*.t}gr;
+		(my $dir = $file) =~ s{/[^/]+\.t\z}{/*.t}g;
 
 		$test_dirs{ $dir } = 1;
 	}

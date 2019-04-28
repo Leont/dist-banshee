@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module provides_from main_module/;
+our @EXPORT_OK = qw/metamerge_file prereqs_file add_prereqs meta_merge version_from_module provides_from main_module defaults/;
 
 use File::Spec::Functions 'catfile';
 
@@ -61,4 +61,13 @@ sub main_module {
 	(my $module = $meta_base->{name}) =~ s/-/::/g;
 	return $module;
 }
+
+sub defaults {
+	return {
+		generated_by        => "Dist::Banshee version $Dist::Banshee::Meta::VERSION",
+		x_generated_by_perl => "$^V", # v5.24.0
+		dynamic_config      => 0,
+	};
+}
+
 1;

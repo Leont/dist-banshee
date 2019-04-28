@@ -24,4 +24,4 @@ if (y_n('Do you want to continue the release process?', 'n')) {
 	print "Successfully uploaded $file\n";
 }
 
-return 0;
+0;

@@ -16,5 +16,4 @@ in_tempdir {
 	system @ARGV;
 };
 
-return 0;
-
+0;

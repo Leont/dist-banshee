@@ -12,4 +12,4 @@ in_tempdir {
 	system $ENV{SHELL};
 };
 
-return 0;
+0;

@@ -23,4 +23,5 @@ push @updated, 'Makefile.PL';
 if ($bump) {
 	commit_files('Bump to version ' . $meta->version, @updated);
 }
-return 0;
+
+0;

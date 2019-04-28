@@ -34,4 +34,4 @@ else {
 	print JSON::PP->new->ascii->pretty->encode($prereqs->as_string_hash);
 }
 
-return 0;
+0;

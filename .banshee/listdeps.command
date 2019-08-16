@@ -31,7 +31,7 @@ if (!$opts{json}) {
 }
 else {
 	require JSON::PP;
-	print JSON::PP->new->ascii->pretty->encode($prereqs->as_string_hash);
+	print JSON::PP->new->ascii->pretty->canonical->encode($prereqs->as_string_hash);
 }
 
 0;

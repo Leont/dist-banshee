@@ -17,7 +17,9 @@ use File::chdir;
 sub source {
 	my ($filename, @arguments) = @_;
 	my $path = catfile('.banshee', "$filename.source");
-	return do "./$path" // croak $@;
+	my $ret = do "./$path";
+	croak $@ if not defined $ret;
+	return $ret;
 }
 
 sub write_file {

@@ -1,6 +1,5 @@
 #! perl
 
-use 5.010;
 use strict;
 use warnings;
 
@@ -23,10 +22,10 @@ if (!$opts{json}) {
 
 	my @modules = sort { lc $a cmp lc $b } $reqs->required_modules;
 	if ($opts{versions}) {
-		say "$_ = ", $reqs->requirements_for_module($_) for @modules;
+		printf "$_ = %s\n", $reqs->requirements_for_module($_) for @modules;
 	}
 	else {
-		say for @modules;
+		print "$_\n" for @modules;
 	}
 }
 else {

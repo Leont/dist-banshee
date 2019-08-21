@@ -19,7 +19,7 @@ runtime:
     Parse::CPAN::Meta: '0'
     Text::Diff: '0'
     Text::Patch: '0'
-    perl: '5.010'
+    perl: '5.008'
     version: '0'
 
 test:

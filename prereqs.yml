@@ -17,6 +17,8 @@ runtime:
     Module::Load: '0'
     Module::Metadata: '0'
     Parse::CPAN::Meta: '0'
+    Text::Diff: '0'
+    Text::Patch: '0'
     perl: '5.010'
     version: '0'
 

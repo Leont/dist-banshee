@@ -12,4 +12,6 @@ my $meta = source('gather-metadata');
 $files->{'META.json'} = $meta->as_string;
 $files->{'META.yml'}  = $meta->as_string({ version => 1.4 });
 
+add_manifest($files);
+
 return $files;

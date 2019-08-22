@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Exporter 5.57 'import';
-our @EXPORT_OK = qw/source write_file write_files in_tempdir dist_test write_tarball prompt y_n bump_version/;
+our @EXPORT_OK = qw/source write_file write_files in_tempdir dist_test write_tarball prompt y_n bump_version add_manifest/;
 
 use Carp 'croak';
 use File::Spec::Functions 'catfile';
@@ -123,4 +123,11 @@ sub bump_version {
 
 	return @updated;
 }
+
+sub add_manifest {
+	my $files = shift;
+	$files->{MANIFEST} = join "\n", sort keys %{ $files }, 'MANIFEST';
+	return;
+}
+
 1;

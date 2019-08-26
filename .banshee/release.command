@@ -19,7 +19,7 @@ if (y_n('Do you want to continue the release process?', 'n')) {
 	my $file = write_tarball($files, $meta, $trial);
 
 	my $uploader = CPAN::Upload::Tiny->new_from_config_or_stdin;
-	#$uploader->upload_file($file);
+	$uploader->upload_file($file);
 
 	print "Successfully uploaded $file\n";
 }
